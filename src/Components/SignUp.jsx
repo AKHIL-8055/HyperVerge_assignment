@@ -320,39 +320,41 @@ export default function SignUp() {
             <div key={s} className={`w-1/3 h-1 ${s <= step ? 'bg-blue-500' : 'bg-gray-300'}`} />
           ))}
         </div>
+{step === 1 && (
+  <div className="flex flex-col gap-4">
+    <input
+      type="text"
+      placeholder={t.phonePlaceholder}
+      value={phone}
+      onChange={(e) => setPhone(e.target.value)}
+      className="border border-gray-300 p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+    <button
+      className="bg-blue-500 text-white px-4 py-3 rounded font-semibold hover:bg-blue-600 transition"
+      onClick={() => {
+        sendOtp();
+        alert("Mock OTP is 8055");
+      }}
+    >
+      {t.sendOtp}
+    </button>
 
-        {/* Step 1: OTP */}
-        {step === 1 && (
-          <div className="flex flex-col gap-4">
-            <input
-              type="text"
-              placeholder={t.phonePlaceholder}
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              className="border border-gray-300 p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            <button
-              className="bg-blue-500 text-white px-4 py-3 rounded font-semibold hover:bg-blue-600 transition"
-              onClick={sendOtp}
-            >
-              {t.sendOtp}
-            </button>
+    <input
+      type="text"
+      placeholder={t.otpPlaceholder}
+      value={otp}
+      onChange={(e) => setOtp(e.target.value)}
+      className="border border-gray-300 p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+    <button
+      className="bg-green-500 text-white px-4 py-3 rounded font-semibold hover:bg-green-600 transition"
+      onClick={verifyOtp}
+    >
+      {t.verifyOtp}
+    </button>
+  </div>
+)}
 
-            <input
-              type="text"
-              placeholder={t.otpPlaceholder}
-              value={otp}
-              onChange={(e) => setOtp(e.target.value)}
-              className="border border-gray-300 p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            <button
-              className="bg-green-500 text-white px-4 py-3 rounded font-semibold hover:bg-green-600 transition"
-              onClick={verifyOtp}
-            >
-              {t.verifyOtp}
-            </button>
-          </div>
-        )}
 
         {/* Step 2: Face Verification */}
         {step === 2 && (
@@ -659,4 +661,5 @@ export default function SignUp() {
       <Ai/>
     </div>
   );
+
 }
